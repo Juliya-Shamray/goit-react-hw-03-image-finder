@@ -3,12 +3,14 @@ import { StyledModal, StyledOverlay } from './Modal.styled';
 import PropTypes from 'prop-types';
 
 export class Modal extends Component {
-  targetElement = null;
-
   componentDidMount() {
+    document.body.style.overflow = 'hidden';
+
     document.addEventListener('keydown', this.handleKeyDown);
   }
   componentWillUnmount() {
+    document.body.style.overflow = 'auto';
+
     document.removeEventListener('keydown', this.handleKeyDown);
   }
   handleKeyDown = e => {
@@ -26,7 +28,7 @@ export class Modal extends Component {
     return (
       <StyledOverlay onClick={this.onBackDropClick}>
         <StyledModal>
-          <img src={this.props.modalImage} alt="" />
+          <img src={this.props.modalImage} alt={this.props.altModal} />
         </StyledModal>
       </StyledOverlay>
     );
@@ -36,4 +38,5 @@ export class Modal extends Component {
 Modal.propTypes = {
   handleToggleModal: PropTypes.func,
   modalImage: PropTypes.string,
+  altModal: PropTypes.string,
 };

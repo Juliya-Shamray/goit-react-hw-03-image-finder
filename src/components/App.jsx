@@ -16,6 +16,7 @@ export class App extends Component {
     q: null,
     isOpen: false,
     modalImage: '',
+    altModal: '',
     max: 0,
   };
 
@@ -50,13 +51,26 @@ export class App extends Component {
     this.setState({ page: this.state.page + 1 });
   };
 
-  handleToggleModal = image => {
-    this.setState({ isOpen: !this.state.isOpen, modalImage: image });
+  handleToggleModal = (image, alt) => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+      modalImage: image,
+      altModal: alt,
+    });
   };
 
   render() {
-    const { gallery, isLoading, isOpen, modalImage, error, max, page, q } =
-      this.state;
+    const {
+      gallery,
+      isLoading,
+      isOpen,
+      modalImage,
+      error,
+      max,
+      page,
+      q,
+      altModal,
+    } = this.state;
     return (
       <StyledWrapper>
         <SearchBar onSubmit={this.handleSubmit} />
@@ -74,6 +88,7 @@ export class App extends Component {
         {isOpen && (
           <Modal
             modalImage={modalImage}
+            altModal={altModal}
             handleToggleModal={this.handleToggleModal}
           />
         )}

@@ -10,7 +10,7 @@ export const ImageGalleryItem = ({
   return (
     <StyledLi>
       <StyledImg
-        onClick={() => handleToggleModal(largeImageURL)}
+        onClick={() => handleToggleModal(largeImageURL, tags)}
         src={webformatURL}
         alt={tags}
       />
